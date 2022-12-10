@@ -22,9 +22,9 @@ app.post("/add",async (req:Request,res:Response)=>{
         res.status(200).json({"status":"success"})
     }
 })
-app.put("/update",async (req:Request,res:Response)=>{
+app.put("/update/:id",async (req:Request,res:Response)=>{
     const hometeam:string = req.body.hometeam;
-    const id:number = req.body.id;
+    const id:number = Number(req.params.id);
     const data = await database.updateQuery(hometeam,id);
     if (data == true){
         res.status(200).json({"status":"success"})
