@@ -26,7 +26,12 @@ class Database{
         }else if (type == "selectID"){
             try{
                 const [rows] = await this.connectionPool.execute(query,params);
-                return mapToMatch(<RowDataPacket[]>rows);
+                const matches = mapToMatch(<RowDataPacket[]>rows)
+                if (matches.length > 0){
+                    return matches[0]
+                }else{
+                    return undefined
+                }
             }catch(error){
                 console.log(error)
             }
