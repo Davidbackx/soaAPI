@@ -15,6 +15,11 @@ app.get("/all",async (req:Request,res:Response)=>{
     await delay(5000)
     res.status(200).json(data)
 })
+app.get("/:id",async (req:Request,res:Response)=>{
+    const data = await database.getById(Number(req.params.id));
+    await delay(5000)
+    res.status(200).json(data)
+})
 app.post("/add",async (req:Request,res:Response)=>{
     const match:Match = req.body.match
     const data = await database.insertQuery(match);
